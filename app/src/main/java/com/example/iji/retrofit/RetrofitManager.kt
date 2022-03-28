@@ -24,10 +24,6 @@ class RetrofitManager {
         val t = term.let {
             it
         }?: ""
-    // val t = term ?: ""
-        // val call = iRetrofit?.searchPhotos(searchTerm = term).let {
-        //      it
-        // }?: return
         val call: Call<JsonElement> = iRetrofit?.apiTest(term=t) ?: return
 
         call.enqueue(object: retrofit2.Callback<JsonElement>{
@@ -39,11 +35,10 @@ class RetrofitManager {
             }
             // 응답 성공 시
             override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
-                Log.d(TAG, "RetrofitManager - onResponse() called / response ${response.raw()}")
+                Log.d(TAG, "RetrofitManager - onResponse() called / response ${response.raw()} ${response.body()}")
 
                 completion(RESPONSE_STATE.OKAY, response.raw().toString())
             }
-
         })
 
 
