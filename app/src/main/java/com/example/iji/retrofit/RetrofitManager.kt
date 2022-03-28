@@ -25,15 +25,15 @@ class RetrofitManager {
             it
         }?: ""
         val call: Call<JsonElement> = iRetrofit?.apiTest(term=t) ?: return
-
+        // Q) 아래의 작업이 오래걸린다, 화면 이동은 홈으로 이동되었으나 RetrofitManager 로그는 5초 뒤에 온다.
         call.enqueue(object: retrofit2.Callback<JsonElement>{
-            // 응답 실패 시
+            // 웹 통신 응답 실패 시
             override fun onFailure(call: Call<JsonElement>, t: Throwable) {
                 Log.d(TAG, "RetrofitManager - onFailure() called / t: $t")
 
                 completion(RESPONSE_STATE.FAIL, t.toString())
             }
-            // 응답 성공 시
+            // 웹 통신 응답 성공 시
             override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
                 Log.d(TAG, "RetrofitManager - onResponse() called / response ${response.raw()} ${response.body()}")
 
