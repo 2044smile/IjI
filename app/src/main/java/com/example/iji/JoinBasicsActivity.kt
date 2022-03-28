@@ -12,11 +12,8 @@ import com.example.iji.utils.RESPONSE_STATE
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.activity_join_basics.*
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.OutputStream
-import java.net.HttpURLConnection
-import java.net.URL
+import android.util.Patterns
+import java.util.regex.Pattern
 
 
 class JoinBasicsActivity : AppCompatActivity() {
@@ -37,19 +34,38 @@ class JoinBasicsActivity : AppCompatActivity() {
             val email = edit_id.text.toString()
             val password1 = edit_password_1.text.toString()
             val password2 = edit_password_2.text.toString()
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
+                Log.d(third, "Email 실패")
+                return@setOnClickListener
+            }
+
+            if (!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", password1)) {
+                Toast.makeText(this, "숫자, 문자, 특수문자 중 2가지 포함(8~20자)", Toast.LENGTH_SHORT).show()
+                Log.d(third, "패스워드1 실패")
+                return@setOnClickListener
+            }
+
+            if (!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", password2)) {
+                Toast.makeText(this, "숫자, 문자, 특수문자 중 2가지 포함(8~20자)", Toast.LENGTH_SHORT).show()
+                Log.d(third, "패스워드2 실패")
+                return@setOnClickListener
+            }
 
             if (email.isEmpty() || password1.isEmpty() || password2.isEmpty()) {
-                isExistBlank = true
+                isExistBlank = true // email, password1, 2 가 비어있는게 없다면 isExistBlank 는 false
                 Log.d(third, "이메일, 패스워드1, 패스워드2 실패")
+                return@setOnClickListener
             } else {
                 if(password1 == password2){
                     isPWSame = true
                 } else {
-                    Log.d(third, "조건문 패스워드 비교 실패")
+                    Log.d(third, "패스워드 비교 실패")
+                    return@setOnClickListener
                 }
             }
 
-            if(!isExistBlank && isPWSame) {
+            if(!isExistBlank && isPWSame) { // false && true
                 Log.d(third, "메인 진입")
 
                 // 백엔드와 통신이 이루어져야한다.
