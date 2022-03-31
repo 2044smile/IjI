@@ -14,7 +14,6 @@ import org.json.JSONObject
 import android.util.Patterns
 import android.view.View
 import android.widget.*
-import com.example.iji.databinding.ActivityJoinBasicsBinding
 import java.util.*
 import java.util.regex.Pattern
 
@@ -35,29 +34,6 @@ class JoinBasicsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_join_basics)
         val btnDateOfBirth = findViewById<TextView>(R.id.edit_dateOfBirth) as TextView
         val btnJoinMembership = findViewById<Button>(R.id.btnLogin_S) as Button
-//
-//        val spinner: Spinner = findViewById(R.id.edit_gender)
-//        ArrayAdapter.createFromResource(
-//            this,
-//            R.array.genderList,
-//            R.layout.activity_join_basics
-//        ).also { adapter ->
-//            adapter.setDropDownViewResource(R.layout.activity_join_basics)
-//            spinner.adapter=adapter
-//        }
-
-//        var gender = resources.getStringArray(R.array.genderList)
-        // 47line 까지 에러가 발생
-//        var adapter = ArrayAdapter<String>(this, R.layout.activity_join_basics, R.id.edit_gender, gender)
-//        spinner.adapter = adapter
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//                Log.d(third, "start")
-//            }
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                Log.d(third, "stop")
-//            }
-//        }
 
         btnDateOfBirth.setOnClickListener { // 생년월일
             val cal = Calendar.getInstance()
@@ -72,7 +48,7 @@ class JoinBasicsActivity : AppCompatActivity() {
 
         btnJoinMembership.setOnClickListener { // ID, Password
             Log.d(third, "버튼 클릭 ")
-            val email = edit_id.text.toString()
+            val email = edit_email.text.toString()
             val password1 = edit_password_1.text.toString()
             val password2 = edit_password_2.text.toString()
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
