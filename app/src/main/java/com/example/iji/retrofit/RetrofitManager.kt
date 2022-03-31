@@ -40,8 +40,5 @@ class RetrofitManager {
                 completion(RESPONSE_STATE.OKAY, response.raw().toString())
             }
         })
-
-
-
     }
 }
