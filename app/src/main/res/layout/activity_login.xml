@@ -43,7 +43,7 @@
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/login_btnLogin_S"
+        android:id="@+id/login_btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="로그인"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@id/login_password"/>
 
     <Button
-        android:id="@+id/login_btnLogin_F"
+        android:id="@+id/login_btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="취소"

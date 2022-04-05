@@ -33,7 +33,7 @@ class JoinBasicsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_basics)
         val btnDateOfBirth = findViewById<TextView>(R.id.edit_dateOfBirth) as TextView
-        val btnJoinMembership = findViewById<Button>(R.id.btnLogin_S) as Button
+        val btnJoinMembership = findViewById<Button>(R.id.join_btnJoin) as Button
 
         btnDateOfBirth.setOnClickListener { // 생년월일
             val cal = Calendar.getInstance()
