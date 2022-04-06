@@ -37,12 +37,6 @@ class LoginActivity : AppCompatActivity() {
 
         val services = retrofit.create(IRetrofit::class.java)
 
-        email.setOnClickListener{
-
-        }
-        password.setOnClickListener{
-
-        }
         loginBtn.setOnClickListener {
             val emailStr = email.text.toString()
             val passwordStr = password.text.toString()
