@@ -1,17 +1,15 @@
 package com.example.iji.retrofit
 
+import android.widget.EditText
 import com.example.iji.utils.API
 import com.google.gson.JsonElement
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
-interface IRetrofit {
+interface IRetrofit { // API
 
-    // @GET("api/routerTest") 내가 사용해야 될 것
-
-    // https://www.naver.com/search/photos/?query=""
-    @POST(API.TEST)
-    fun apiTest(@Query("query") term: String) : Call<JsonElement>
+    @FormUrlEncoded
+    @POST("/api/auth/signin/")
+    fun login(@Field("email") email: String, @Field("password") password: String): Call<String>
+    // 파라미터 통신, JSON 통신이 가능하다.
 }

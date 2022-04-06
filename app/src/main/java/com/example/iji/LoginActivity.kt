@@ -3,39 +3,60 @@ package com.example.iji
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.widget.Button
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
-import java.util.regex.Pattern
+import android.widget.EditText
+import com.example.iji.retrofit.IRetrofit
+import com.example.iji.utils.API
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
-    val four: String = "로그인 -"
+    lateinit var email: EditText
+    lateinit var password: EditText
+    lateinit var loginBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val btnLogin = findViewById<Button>(R.id.btnLogin) as Button
+        email = findViewById(R.id.login_email)
+        password = findViewById(R.id.login_password)
+        loginBtn = findViewById(R.id.login_btnLogin)
 
-        btnLogin.setOnClickListener{
-            Log.d(four, "버튼 클릭 ")
-            val email = login_email.text.toString()
-            val password = login_password.text.toString()
-            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
-                Log.d(four, "Email 실패")
-                return@setOnClickListener
-            }
+        val retrofit = Retrofit.Builder()
+            .baseUrl("${API.BASE_URL}")
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-            if (!Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", password)) {
-                Toast.makeText(this, "숫자, 문자, 특수문자 중 2가지 포함(8~20자)", Toast.LENGTH_SHORT).show()
-                Log.d(four, "패스워드 실패")
-                return@setOnClickListener
-            }
-            // 위에서는 아이디가 이메일 양식이 맞는지, 패스워드가 조건을 지켰는지 확인
-            // 아이디, 패스워드를 Node.js로 넣어 맞는지 확인
+        val services = retrofit.create(IRetrofit::class.java)
+
+        email.setOnClickListener{
+
+        }
+        password.setOnClickListener{
+
+        }
+        loginBtn.setOnClickListener {
+            val emailStr = email.text.toString()
+            val passwordStr = password.text.toString()
+
+            services.login(emailStr, passwordStr).enqueue(object:Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val result = response.body()
+                    Log.d("로그인 성공", "${result}")
+                }
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Log.d("로그인 실패", "${t.localizedMessage}")
+                    }
+                }
+            )
         }
     }
 }
