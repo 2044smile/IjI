@@ -9,9 +9,8 @@ import kotlinx.android.synthetic.main.activity_join_basics.*
 import android.util.Patterns
 import android.view.View
 import android.widget.*
-import com.example.iji.api.RetrofitClient
-import com.example.iji.models.DefaultResponse
-import okhttp3.OkHttpClient
+import com.example.iji.api.Api
+import com.example.iji.models.SignUpResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -101,29 +100,21 @@ class JoinBasicsActivity : AppCompatActivity() {
             }
 
             if (!isExistBlank && isPWSame) {
-                Log.d(third, "메인 진입")
-
-                RetrofitClient.instance.createUser(email, password1)
-                    .enqueue(object: Callback<DefaultResponse> {
-                        override fun onResponse(
-                            call: Call<DefaultResponse>,
-                            response: Response<DefaultResponse>
-                        ) {
-//                            if (!response.body()?.error!!){
-//                                Log.d(third, "error!!!")
-//                            } else {
-                            Log.d(third, "onResponse 성공")
-                            Log.d(third, response.message())
-                            Log.d(third, response.body().toString())
-                            Log.d(third, response.raw().toString())
-//                            }
-                        }
-
-                        override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
-                            Log.d(third, "onFailure 실패")
-                            Log.d(third, "${t.localizedMessage}, ${t.message}")
-                        }
-                    })
+                Log.d(third, "Email, Password check - ${email}, ${password1}, ${password2}")
+                val api = Api.create()
+                api.createUser(email, password1).enqueue(object : Callback<SignUpResponse> {
+                    override fun onResponse(
+                            call: Call<SignUpResponse>,
+                        response: Response<SignUpResponse>
+                    ) {
+                        Log.d(third, "Email, Password onResponse check - ${email}, ${password1}, ${password2}")
+                        Log.d(third, "Success")
+                    }
+                    override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                        Log.d(third, "Email, Password onFailure check - ${email}, ${password1}, ${password2}")
+                        Log.d(third, "Failed")
+                    }
+                })
 
                 val intent = Intent(this, HomeActivity::class.java)
                 Log.d(third, "홈 버튼 클릭")
