@@ -20,7 +20,7 @@ import java.util.regex.Pattern
 
 class JoinBasicsActivity : AppCompatActivity() {
 
-    val third: String = "사설 가입 - 회원가입"
+    val logSignUp: String = "사설 가입 - 회원가입"
     var isExistBlank = false
     var isPWSame = false
     var dateString = ""
@@ -55,14 +55,14 @@ class JoinBasicsActivity : AppCompatActivity() {
         }
 
         btnJoinMembership.setOnClickListener { // 회원가입 버튼 클릭
-            Log.d(third, "버튼 클릭 ")
+            Log.d(logSignUp, "버튼 클릭 ")
             val email = edit_email.text.toString().trim()
             val password1 = edit_password_1.text.toString().trim()
             val password2 = edit_password_2.text.toString().trim()
 
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
-                Log.d(third, "Email 실패")
+                Log.d(logSignUp, "Email 실패")
                 return@setOnClickListener
             }
 
@@ -72,7 +72,7 @@ class JoinBasicsActivity : AppCompatActivity() {
                 )
             ) {
                 Toast.makeText(this, "숫자, 문자, 특수문자 중 2가지 포함(8~20자)", Toast.LENGTH_SHORT).show()
-                Log.d(third, "패스워드1 실패")
+                Log.d(logSignUp, "패스워드1 실패")
                 return@setOnClickListener
             }
 
@@ -82,42 +82,42 @@ class JoinBasicsActivity : AppCompatActivity() {
                 )
             ) {
                 Toast.makeText(this, "숫자, 문자, 특수문자 중 2가지 포함(8~20자)", Toast.LENGTH_SHORT).show()
-                Log.d(third, "패스워드2 실패")
+                Log.d(logSignUp, "패스워드2 실패")
                 return@setOnClickListener
             }
 
             if (email.isEmpty() || password1.isEmpty() || password2.isEmpty()) {
                 isExistBlank = true // email, password1, 2 가 비어있는게 없다면 isExistBlank 는 false
-                Log.d(third, "이메일, 패스워드1, 패스워드2 실패")
+                Log.d(logSignUp, "이메일, 패스워드1, 패스워드2 실패")
                 return@setOnClickListener
             } else {
                 if (password1 == password2) {
                     isPWSame = true
                 } else {
-                    Log.d(third, "패스워드 비교 실패")
+                    Log.d(logSignUp, "패스워드 비교 실패")
                     return@setOnClickListener
                 }
             }
 
             if (!isExistBlank && isPWSame) {
-                Log.d(third, "Email, Password check - ${email}, ${password1}, ${password2}")
+                Log.d(logSignUp, "Email, Password check - ${email}, ${password1}, ${password2}")
                 val api = Api.create()
                 api.createUser(email, password1).enqueue(object : Callback<SignUpResponse> {
                     override fun onResponse(
                             call: Call<SignUpResponse>,
                         response: Response<SignUpResponse>
                     ) {
-                        Log.d(third, "Email, Password onResponse check - ${email}, ${password1}, ${password2}")
-                        Log.d(third, "Success")
+                        Log.d(logSignUp, "Email, Password onResponse check - ${email}, ${password1}, ${password2}")
+                        Log.d(logSignUp, "Success")
                     }
                     override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                        Log.d(third, "Email, Password onFailure check - ${email}, ${password1}, ${password2}")
-                        Log.d(third, "Failed")
+                        Log.d(logSignUp, "Email, Password onFailure check - ${email}, ${password1}, ${password2}")
+                        Log.d(logSignUp, "Failed")
                     }
                 })
 
                 val intent = Intent(this, HomeActivity::class.java)
-                Log.d(third, "홈 버튼 클릭")
+                Log.d(logSignUp, "홈 버튼 클릭")
                 startActivity(intent)
             }
         }
