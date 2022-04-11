@@ -8,9 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
     // 내용 정리
@@ -20,18 +18,22 @@ interface Api {
     // postman 으로도 원하는 값을 넣어 보내도 오류가 발생하는 문제 확인완료.
     // OkHttpClient 는 @FormUrlEncoded 로 인코딩이 된 걸로 확인(확실하지 않음) 그래서 백엔드에서 인코딩 된 걸 디코딩하여
     // 받아야 되는 걸로 확인 - help 조이스
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("/api/auth/signup/")
+//    fun createUser(
+//        @Field("email") email:String,
+//        @Field("password") password1:String
+//    ): Call<SignUpResponse>
+    @Headers("content-type: application/json")
     @POST("/api/auth/signup/")
     fun createUser(
-        @Field("email") email:String,
-        @Field("password") password1:String
+        @Body jsonParams:SignUpResponse,
     ): Call<SignUpResponse>
 
-    @FormUrlEncoded
+    @Headers("content-type: application/json")
     @POST("/api/auth/signin")
     fun userLogin(
-        @Field("email") email:String,
-        @Field("password") password:String
+        @Body jsonParams:LoginResponse,
     ): Call<LoginResponse>
 
     companion object {

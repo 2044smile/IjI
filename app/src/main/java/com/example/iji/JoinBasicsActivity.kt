@@ -102,17 +102,18 @@ class JoinBasicsActivity : AppCompatActivity() {
             if (!isExistBlank && isPWSame) {
                 Log.d(logSignUp, "Email, Password check - ${email}, ${password1}, ${password2}")
                 val api = Api.create()
-                api.createUser(email, password1).enqueue(object : Callback<SignUpResponse> {
+                val data = SignUpResponse(email, password1)
+                api.createUser(data).enqueue(object : Callback<SignUpResponse> {
                     override fun onResponse(
                             call: Call<SignUpResponse>,
-                        response: Response<SignUpResponse>
-                    ) {
-                        Log.d(logSignUp, "Email, Password onResponse check - ${email}, ${password1}, ${password2}")
-                        Log.d(logSignUp, "Success")
-                    }
-                    override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                        Log.d(logSignUp, "Email, Password onFailure check - ${email}, ${password1}, ${password2}")
-                        Log.d(logSignUp, "Failed")
+                            response: Response<SignUpResponse>
+                        ) {
+                            Log.d(logSignUp, "Email, Password onResponse check - ${email}, ${password1}, ${password2}")
+                            Log.d(logSignUp, "Success")
+                        }
+                        override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                            Log.d(logSignUp, "Email, Password onFailure check - ${email}, ${password1}, ${password2}")
+                            Log.d(logSignUp, "Failed")
                     }
                 })
 

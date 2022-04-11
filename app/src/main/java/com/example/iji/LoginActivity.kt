@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.iji.api.Api
 import com.example.iji.models.LoginResponse
+import com.example.iji.models.SignUpResponse
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.regex.Pattern
@@ -34,8 +35,10 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val email = email.text.toString().trim()
             val password1 = password.text.toString().trim()
+
             val api = Api.create()
-            api.userLogin(email, password1).enqueue(object: Callback<LoginResponse> {
+            val data = LoginResponse(email, password1)
+            api.userLogin(data).enqueue(object: Callback<LoginResponse> {
                 override fun onResponse(
                     call: retrofit2.Call<LoginResponse>,
                     response: Response<LoginResponse>
