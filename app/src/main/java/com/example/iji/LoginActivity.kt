@@ -35,25 +35,32 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val email = email.text.toString().trim()
             val password1 = password.text.toString().trim()
+            var state: Boolean? = null
 
             val api = Api.create()
             val data = LoginResponse(email, password1)
+            Log.d(logLogin, "---- ${state} 출력 ----")
             api.userLogin(data).enqueue(object: Callback<LoginResponse> {
-                override fun onResponse(
-                    call: retrofit2.Call<LoginResponse>,
-                    response: Response<LoginResponse>
-                ) {
+                override fun onResponse(call: retrofit2.Call<LoginResponse>, response: Response<LoginResponse>) {
+                    state = true
                     Log.d(logLogin, "Success")
+                    Log.d(logLogin, "- ${state} - ")
                 }
-
                 override fun onFailure(call: retrofit2.Call<LoginResponse>, t: Throwable) {
+                    state = false
                     Log.d(logLogin, "Failed")
+                    Log.d(logLogin, "-- ${state} -- ")
                 }
-
             })
-            val intent = Intent(this, HomeActivity::class.java)
-            Log.d(logLogin, "홈 버튼 클릭")
-            startActivity(intent)
+            Log.d(logLogin, "--- ${state} 출력 ---")
+            if (state == false){ // state 가 false 라면
+                Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else {
+                val intent = Intent(this, HomeActivity::class.java)
+                Log.d(logLogin, "홈 버튼 클릭")
+                startActivity(intent)
+            }
         }
     }
 }
