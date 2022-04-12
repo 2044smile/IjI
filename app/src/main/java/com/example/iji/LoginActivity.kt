@@ -3,18 +3,14 @@ package com.example.iji
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.telecom.Call
 import android.util.Log
-import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.iji.api.Api
 import com.example.iji.models.LoginResponse
-import com.example.iji.models.SignUpResponse
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.regex.Pattern
 
 
 class LoginActivity : AppCompatActivity() {
