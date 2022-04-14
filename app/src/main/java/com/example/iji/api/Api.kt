@@ -1,5 +1,6 @@
 package com.example.iji.api
 
+import com.example.iji.models.LoginResponse
 import com.example.iji.models.SignUpResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
