@@ -14,6 +14,11 @@ import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
+    // Login 에서 Shared Preferences
+    // Shared Preferences 는 간단한 값을 저장할 때 주로 사용한다. 초기 설정 값이나 **자동 로그인 여부** 등 간단한 값을
+    // 저장할 때 DB를 사용하면 복잡하기 때문에 Shared Preferences 를 사용하면 적합하다.
+    // 로그아웃 할 때 Shared Preferences 데이터를 가져와 세션을 같으 삭제하면 완벽한 로그아웃이 완성?!
+
 
     val logLogin: String = "사설 로그인 - 로그인 "
     lateinit var email: EditText
