@@ -31,10 +31,14 @@ class JoinBasicsActivity : AppCompatActivity() {
     fun onRadioButtonClicked(view: View) {
 
     }
-
+    // 앱이 처음 실행할 때 한번 수행하는 곳 (초기화)
+    // onDestroy() 앱이 종료되는 시점이 다가올 때 호출
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_basics)
+
+        loadData()
+
         email = findViewById(R.id.edit_email)
         password = findViewById(R.id.edit_password_1)
         joinBtn = findViewById(R.id.join_btnJoin)
@@ -116,11 +120,31 @@ class JoinBasicsActivity : AppCompatActivity() {
                             Log.d(logSignUp, "Failed")
                     }
                 })
-
                 val intent = Intent(this, HomeActivity::class.java)
                 Log.d(logSignUp, "홈 버튼 클릭")
                 startActivity(intent)
             }
         }
     }
+
+    private fun loadData() {
+        val pref = getSharedPreferences("pref", 0)
+        edit_email.setText(pref.getString("email", "")) // email 값이 존재하지 않을 경우 대체 데이터
+        edit_password_1.setText(pref.getString("password", ""))
+    }
+
+    private fun saveData() {
+        val pref = getSharedPreferences("pref", 0)
+        val edit = pref.edit()
+        edit.putString("email", edit_email.text.toString())
+        edit.putString("password", edit_password_1.text.toString())
+        edit.apply()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        saveData()
+    }
+
 }
