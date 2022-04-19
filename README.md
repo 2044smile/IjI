@@ -1,7 +1,11 @@
-# IjI
-Kotlin
+<h1>Feature</h1>
+<h2>로그인 상태 유지</h2>
+<h3>AccountManager</h3>
+1. https://jhdroid.tistory.com/37</br>
+2. https://developer.android.com/training/id-auth/identify?hl=ko</br>
 
-## Login, Join, Main
-Main -> JoinActivity(구글, 네이버, 카카오, (개인)회원가입) -> JoinBasicsActivity((개인)회원가입) ID, Password1, 2
+<h3>Login Session Maintain</h3>
+1. https://dailylonnie0125.tistory.com/11</br>
 
-
+<h3>Auto0</h3>
+1. https://auth0.com/
