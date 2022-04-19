@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.iji.api.Api
 import com.example.iji.models.LoginResponse
+import kotlinx.android.synthetic.main.activity_join_basics.*
+import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -28,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        loadData()
 
         email = findViewById(R.id.login_email)
         password = findViewById(R.id.login_password)
@@ -63,5 +67,23 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun loadData() {
+        val pref = getSharedPreferences("pref", 0)
+        login_email.setText(pref.getString("email", "")) // email 값이 존재하지 않을 경우 대체 데이터
+        login_password.setText(pref.getString("password", ""))
+    }
+    private fun saveData() {
+        val pref = getSharedPreferences("pref", 0)
+        val edit = pref.edit()
+        edit.putString("email", login_email.text.toString())
+        edit.putString("password", login_password.text.toString())
+        edit.apply()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        saveData()
     }
 }
