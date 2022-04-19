@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/join_membership.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/login.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/option_menu.xml" value="0.19270833333333334" />
+        <entry key="app/src/main/res/menu/option_menu.xml" value="0.19270833333333334" />
       </map>
     </option>
   </component>
