@@ -37,7 +37,7 @@ class JoinBasicsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join_basics)
 
-        loadData()
+//        loadData()
 
         email = findViewById(R.id.edit_email)
         password = findViewById(R.id.edit_password_1)
@@ -126,25 +126,25 @@ class JoinBasicsActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun loadData() {
-        val pref = getSharedPreferences("pref", 0)
-        edit_email.setText(pref.getString("email", "")) // email 값이 존재하지 않을 경우 대체 데이터
-        edit_password_1.setText(pref.getString("password", ""))
-    }
-
-    private fun saveData() {
-        val pref = getSharedPreferences("pref", 0)
-        val edit = pref.edit()
-        edit.putString("email", edit_email.text.toString())
-        edit.putString("password", edit_password_1.text.toString())
-        edit.apply()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        saveData()
-    }
+//
+//    private fun loadData() {
+//        val pref = getSharedPreferences("pref", 0)
+//        edit_email.setText(pref.getString("email", "")) // email 값이 존재하지 않을 경우 대체 데이터
+//        edit_password_1.setText(pref.getString("password", ""))
+//    }
+//
+//    private fun saveData() {
+//        val pref = getSharedPreferences("pref", 0)
+//        val edit = pref.edit()
+//        edit.putString("email", edit_email.text.toString())
+//        edit.putString("password", edit_password_1.text.toString())
+//        edit.apply()
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//
+//        saveData()
+//    }
 
 }
