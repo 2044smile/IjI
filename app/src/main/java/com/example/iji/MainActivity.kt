@@ -42,5 +42,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
+        btnLogin.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        btnLogout.setOnClickListener{
+            val intent = Intent(this, LogoutActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
