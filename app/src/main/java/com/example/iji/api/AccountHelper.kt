@@ -6,7 +6,7 @@ import android.content.Context
 
 object AccountHelper {
     private var accountManager: AccountManager? = null
-    private const val MY_ACCOUNT_TYPE = "com.example.IjI.login"
+    private const val MY_ACCOUNT_TYPE = "com.example.IjI.auth.login"
 
     fun initAccountManager(context: Context) {
         accountManager = AccountManager.get(context)
