@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IjI"
         android:usesCleartextTraffic="true">
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/auth.xml" />
 
         <activity
             android:name=".HomeActivity"
