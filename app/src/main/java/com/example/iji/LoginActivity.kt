@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.iji.api.Api
+import com.example.iji.api.MyApplication
 import com.example.iji.models.LoginResponse
 import kotlinx.android.synthetic.main.activity_join_basics.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -44,20 +45,17 @@ class LoginActivity : AppCompatActivity() {
 
             val api = Api.create()
             val data = LoginResponse(email, password1)
-            Log.d(logLogin, "---- ${state} 출력 ----")
+
             api.userLogin(data).enqueue(object: Callback<LoginResponse> {
                 override fun onResponse(call: retrofit2.Call<LoginResponse>, response: Response<LoginResponse>) {
+                    MyApplication.prefs.setString("email", email)
+                    MyApplication.prefs.setString("password", password1)
                     state = true
-                    Log.d(logLogin, "Success")
-                    Log.d(logLogin, "- ${state} - ")
                 }
                 override fun onFailure(call: retrofit2.Call<LoginResponse>, t: Throwable) {
                     state = false
-                    Log.d(logLogin, "Failed")
-                    Log.d(logLogin, "-- ${state} -- ")
                 }
             })
-            Log.d(logLogin, "--- ${state} 출력 ---")
             if (state == false){ // state 가 false 라면
                 Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
