@@ -17,6 +17,8 @@
 1. https://developer.android.com/guide/topics/ui/menus.html#PopupMenu</br>
 2. https://ddolcat.tistory.com/578
 
+<h3>onStart 에 대해 알아보기</h3>
+
 <h2>menu item - 구현이 애매하긴 하지만 나중에 사용할 것 같아 메모</h2>
 1. https://sbe03005dev.tistory.com/entry/Android-Kotlin-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%BD%94%ED%8B%80%EB%A6%B0-Option-Menu
 
