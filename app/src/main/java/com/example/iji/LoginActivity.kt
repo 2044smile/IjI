@@ -1,7 +1,6 @@
 package com.example.iji
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.iji.api.Api
 import com.example.iji.api.MyApplication
-import com.example.iji.models.LoginResponse
-import kotlinx.android.synthetic.main.activity_join_basics.*
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.iji.models.LoginBackendResponse
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -44,15 +41,22 @@ class LoginActivity : AppCompatActivity() {
             var state: Boolean? = null
 
             val api = Api.create()
-            val data = LoginResponse(email, password1)
+            val data = LoginBackendResponse(code = "", message = "", token = "")
 
-            api.userLogin(data).enqueue(object: Callback<LoginResponse> {
-                override fun onResponse(call: retrofit2.Call<LoginResponse>, response: Response<LoginResponse>) {
-                    MyApplication.prefs.setString("email", email)
+            api.userLogin(data).enqueue(object: Callback<LoginBackendResponse> {
+                override fun onResponse(call: retrofit2.Call<LoginBackendResponse>, response: Response<LoginBackendResponse>) {
+                    Log.d("Q", "plz ${response.body().toString()}")
+//                  plz LoginBackendResponse(code=-1, message=아이디를 찾을 수 없습니다., token=null)
+
+                    var response = response.body().toString()
+                    Log.d("Q", "plz ${response.get(index = 0)}")
+
+
+                    MyApplication.prefs.setString("email", email) // Shared Preferences setString
                     MyApplication.prefs.setString("password", password1)
                     state = true
                 }
-                override fun onFailure(call: retrofit2.Call<LoginResponse>, t: Throwable) {
+                override fun onFailure(call: retrofit2.Call<LoginBackendResponse>, t: Throwable) {
                     state = false
                 }
             })

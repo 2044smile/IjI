@@ -1,5 +1,6 @@
 package com.example.iji.api
 
+import com.example.iji.models.LoginBackendResponse
 import com.example.iji.models.LoginResponse
 import com.example.iji.models.SignUpResponse
 import okhttp3.Interceptor
@@ -33,8 +34,8 @@ interface Api {
     @Headers("content-type: application/json")
     @POST("/api/auth/signin")
     fun userLogin(
-        @Body jsonParams:LoginResponse,
-    ): Call<LoginResponse>
+        @Body jsonParams: LoginBackendResponse,
+    ): Call<LoginBackendResponse>
 
     companion object {
         private const val BASE_URL = "http://54.180.71.162:4000"
