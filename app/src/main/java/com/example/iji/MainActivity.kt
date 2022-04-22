@@ -3,10 +3,13 @@ package com.example.iji
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
+import com.example.iji.api.MyApplication
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btnSignUp = findViewById<Button>(R.id.btnSignUp) as Button // 첫 번째 회원가입을 누르면 JoinActivity
+        val btnLogin = findViewById<Button>(R.id.btnLogin) as Button
+        val btnLogout = findViewById<Button>(R.id.btnLogout) as Button
 
         btnSignUp.setOnClickListener{
             val intent = Intent(this, JoinActivity::class.java)
@@ -50,6 +55,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LogoutActivity::class.java)
             startActivity(intent)
         }
-
     }
 }
