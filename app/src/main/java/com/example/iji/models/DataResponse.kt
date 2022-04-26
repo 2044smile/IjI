@@ -8,10 +8,9 @@ data class LogoutResponse(val email: String, val password: String, val state: Bo
 
 data class LoginResponse(val email: String, val password: String)
 data class LoginBackendResponse(
-//    @SerializedName("data")
     val code: String,
     val message: String,
-    val token: String
+    val token: String? = null
     )
 
 data class SignUpResponse(val email: String, val password: String)
