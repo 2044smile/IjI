@@ -17,7 +17,7 @@ class MyApplication : Application() {
 
 class PreferenceUtil(context: Context) {
     private val prefs: SharedPreferences =
-        context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
+        context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE) // Context 의 내용을 비공개
 
     fun getString(key: String, defValue: String): String {
         return prefs.getString(key, defValue).toString()
