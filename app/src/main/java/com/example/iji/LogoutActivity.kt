@@ -1,6 +1,7 @@
 package com.example.iji
 
 import android.app.Dialog
+import android.app.SharedElementCallback
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.iji.api.MyApplication
 import kotlinx.android.synthetic.main.activity_join_basics.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -33,7 +35,10 @@ class LogoutActivity : AppCompatActivity() { // 로그아웃 페이지
 
             fun toast() {
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+                MyApplication.prefs.edit.remove("email")
+                MyApplication.prefs.edit.remove("password")
                 val intent = Intent(this, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
             }
             var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
