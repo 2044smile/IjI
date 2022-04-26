@@ -47,18 +47,16 @@ class LoginActivity : AppCompatActivity() {
 
             api.userLogin(data).enqueue(object: Callback<LoginBackendResponse> {
                 override fun onResponse(call: retrofit2.Call<LoginBackendResponse>, response: Response<LoginBackendResponse>) {
-                    if(response.isSuccessful){
+                    state = if(response.body()?.code == "200"){
                         MyApplication.prefs.setString("email", email) // Shared Preferences setString
                         MyApplication.prefs.setString("password", password1)
-                        state = true
-                        Log.d("S", "S Question ${response.body()?.code}") // 서버가 살아나면 왠지 나올 것만 같음
+                        true
                     } else {
-
+                        false
                     }
                 }
                 override fun onFailure(call: retrofit2.Call<LoginBackendResponse>, t: Throwable) {
-                    Log.d("F", "F Question ${t.message.toString()}")
-                    state = false
+                    false
                 }
             })
             if (state == false){ // state 가 false 라면
