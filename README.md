@@ -4,8 +4,9 @@
 1. https://jhdroid.tistory.com/37</br>
 2. https://developer.android.com/training/id-auth/identify?hl=ko</br>
 
-<h3>Facebook</h3>
-1. https://m.blog.naver.com/sksghkdwjddk/221627763117
+<h3>Facebook, kakao</h3>
+1. https://m.blog.naver.com/sksghkdwjddk/221627763117ㅡ
+2. https://developers.kakao.com/docs/latest/ko/kakaologin/android
 
 <h3>Login Session Maintain & Shared Preference</h3>
 1. https://dailylonnie0125.tistory.com/11</br>
