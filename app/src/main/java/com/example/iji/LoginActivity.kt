@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.iji.api.Api
 import com.example.iji.api.MyApplication
 import com.example.iji.models.LoginBackendResponse
+import com.example.iji.models.LoginResponse
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -41,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
             var state: Boolean? = null
 
             val api = Api.create()
-            val data = LoginBackendResponse(code = "", message = "", token = "")
+            val data = LoginResponse(email, password1)
 
             api.userLogin(data).enqueue(object: Callback<LoginBackendResponse> {
                 override fun onResponse(call: retrofit2.Call<LoginBackendResponse>, response: Response<LoginBackendResponse>) {
