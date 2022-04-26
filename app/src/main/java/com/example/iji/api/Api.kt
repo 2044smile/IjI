@@ -34,7 +34,7 @@ interface Api {
     @Headers("content-type: application/json")
     @POST("/api/auth/signin")
     fun userLogin(
-        @Body jsonParams: LoginBackendResponse,
+        @Body jsonParams: LoginResponse,
     ): Call<LoginBackendResponse>
 
     companion object {
