@@ -11,6 +11,7 @@ import com.example.iji.api.Api
 import com.example.iji.api.MyApplication
 import com.example.iji.models.LoginBackendResponse
 import com.example.iji.models.LoginResponse
+import org.json.JSONObject
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -46,18 +47,17 @@ class LoginActivity : AppCompatActivity() {
 
             api.userLogin(data).enqueue(object: Callback<LoginBackendResponse> {
                 override fun onResponse(call: retrofit2.Call<LoginBackendResponse>, response: Response<LoginBackendResponse>) {
-                    Log.d("Q", "plz ${response.body().toString()}")
-//                  plz LoginBackendResponse(code=-1, message=아이디를 찾을 수 없습니다., token=null)
+                    if(response.isSuccessful){
+                        MyApplication.prefs.setString("email", email) // Shared Preferences setString
+                        MyApplication.prefs.setString("password", password1)
+                        state = true
+                        Log.d("S", "S Question ${response.body()?.code}") // 서버가 살아나면 왠지 나올 것만 같음
+                    } else {
 
-                    var response = response.body().toString()
-                    Log.d("Q", "plz ${response.get(index = 0)}")
-
-
-                    MyApplication.prefs.setString("email", email) // Shared Preferences setString
-                    MyApplication.prefs.setString("password", password1)
-                    state = true
+                    }
                 }
                 override fun onFailure(call: retrofit2.Call<LoginBackendResponse>, t: Throwable) {
+                    Log.d("F", "F Question ${t.message.toString()}")
                     state = false
                 }
             })
