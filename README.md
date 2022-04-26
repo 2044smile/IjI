@@ -5,7 +5,7 @@
 2. https://developer.android.com/training/id-auth/identify?hl=ko</br>
 
 <h3>Facebook, kakao</h3>
-1. https://m.blog.naver.com/sksghkdwjddk/221627763117ㅡ
+1. https://m.blog.naver.com/sksghkdwjddk/221627763117ㅡ</br>
 2. https://developers.kakao.com/docs/latest/ko/kakaologin/android
 
 <h3>Login Session Maintain & Shared Preference</h3>
