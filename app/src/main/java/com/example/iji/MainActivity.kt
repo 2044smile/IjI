@@ -40,20 +40,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btnSignUp = findViewById<Button>(R.id.btnSignUp) as Button // 첫 번째 회원가입을 누르면 JoinActivity
-        val btnLogin = findViewById<Button>(R.id.btnLogin) as Button
-        val btnLogout = findViewById<Button>(R.id.btnLogout) as Button
 
+        val email = MyApplication.prefs.getString("email", "")
+        val password = MyApplication.prefs.getString("password", "")
+
+        if (email == "" && password == ""){
+            val btnLogin = findViewById<Button>(R.id.btnLogin) as Button
+            btnLogin.setOnClickListener{
+                R.id.btnLogin.toString()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            val btnLogout = findViewById<Button>(R.id.btnLogout) as Button
+            btnLogout.setOnClickListener{
+                val intent = Intent(this, LogoutActivity::class.java)
+                startActivity(intent)
+            }
+        }
         btnSignUp.setOnClickListener{
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
-        btnLogin.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-        btnLogout.setOnClickListener{
-            val intent = Intent(this, LogoutActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 }

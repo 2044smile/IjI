@@ -21,6 +21,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class LogoutActivity : AppCompatActivity() { // 로그아웃 페이지
+    // TODO(problem): Logout two click why? No Screen / dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,7 @@ class LogoutActivity : AppCompatActivity() { // 로그아웃 페이지
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
                 MyApplication.prefs.edit.remove("email")
                 MyApplication.prefs.edit.remove("password")
+                MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
