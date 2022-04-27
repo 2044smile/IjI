@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             val email = email.text.toString().trim()
             val password1 = password.text.toString().trim()
-            var state: Boolean? = null
+            var state: Boolean?
 
             val api = Api.create()
             val data = LoginResponse(email, password1)
@@ -50,23 +50,23 @@ class LoginActivity : AppCompatActivity() {
                     state = if(response.body()?.code == "200"){
                         MyApplication.prefs.setString("email", email) // Shared Preferences setString
                         MyApplication.prefs.setString("password", password1)
+
+                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                        startActivity(intent)
+
+                        Toast.makeText(this@LoginActivity, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+
                         true
                     } else {
+                        Toast.makeText(this@LoginActivity, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+
                         false
                     }
                 }
                 override fun onFailure(call: retrofit2.Call<LoginBackendResponse>, t: Throwable) {
-                    false
+                    false.also { state = it }
                 }
             })
-            if (state == false){ // state 가 false 라면
-                Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            } else {
-                val intent = Intent(this, HomeActivity::class.java)
-                Log.d(logLogin, "홈 버튼 클릭")
-                startActivity(intent)
-            }
         }
     }
 //
