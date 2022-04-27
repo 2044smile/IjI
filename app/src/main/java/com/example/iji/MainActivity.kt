@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         if (email == "" && password == ""){
             val btnLogin = findViewById<Button>(R.id.btnLogin) as Button
             btnLogin.setOnClickListener{
-                R.id.btnLogin.toString()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
