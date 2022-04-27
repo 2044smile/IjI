@@ -25,10 +25,10 @@ class LogoutActivity : AppCompatActivity() { // 로그아웃 페이지
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_logout)
 
-        val btn = findViewById<Button>(R.id.btnLogout) as Button
-        btn.setOnClickListener{
+        val btnLogout = findViewById<Button>(R.id.logout_btnLogout) as Button
+        btnLogout.setOnClickListener{
             var dialog = AlertDialog.Builder(this)
             dialog.setTitle("로그아웃을 하시겠습니까?")
             dialog.setMessage("서비스를 이용해주셔서 감사합니다.")
