@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="kakao">#FFEEE500</color>
     <color name="naver">#2DB400</color>
+    <color name="yes">#2DB400</color>
+    <color name="no">#FF0000</color>
 </resources>
