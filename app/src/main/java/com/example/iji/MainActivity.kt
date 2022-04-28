@@ -32,18 +32,18 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
+            btnSignUp.setOnClickListener{
+                val intent = Intent(this, JoinActivity::class.java)
+                startActivity(intent)
+            }
         } else {
             val btnLogout = findViewById<Button>(R.id.btnLogout) as Button
             btnLogin.visibility = View.GONE
+            btnSignUp.visibility = View.GONE
             btnLogout.setOnClickListener{
                 val intent = Intent(this, LogoutActivity::class.java)
                 startActivity(intent)
             }
         }
-        btnSignUp.setOnClickListener{
-            val intent = Intent(this, JoinActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }
