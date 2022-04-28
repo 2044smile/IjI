@@ -1,51 +1,41 @@
 package com.example.iji
 
-import android.app.Dialog
-import android.app.SharedElementCallback
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.iji.api.MyApplication
-import kotlinx.android.synthetic.main.activity_join_basics.*
-import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.OutputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
-class LogoutActivity : AppCompatActivity() { // 로그아웃 페이지
-    // TODO(problem): Logout two click why? No Screen / dialog
+class LogoutActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logout)
 
-        val btnLogout = findViewById<Button>(R.id.logout_btnLogout) as Button
+        val btnLogout = findViewById<Button>(R.id.logout_yes) as Button
         btnLogout.setOnClickListener{
             var dialog = AlertDialog.Builder(this)
             dialog.setTitle("로그아웃을 하시겠습니까?")
             dialog.setMessage("서비스를 이용해주셔서 감사합니다.")
             // dialog.setIcon 추후에 아이콘 삽입
 
-            fun toast() {
+            fun remove() {
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+
                 MyApplication.prefs.edit.remove("email")
                 MyApplication.prefs.edit.remove("password")
-                MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
+                MyApplication.prefs.edit.commit() // Shared Preference 삭제되는 것을 확인
+
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
             }
             var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
                 when (p1) {
-                    DialogInterface.BUTTON_POSITIVE -> toast()
+                    DialogInterface.BUTTON_POSITIVE -> remove()
                 }
             }
             dialog.setPositiveButton("YES", dialogLister)
