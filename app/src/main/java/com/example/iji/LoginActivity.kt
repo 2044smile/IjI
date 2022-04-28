@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
     // 저장할 때 DB를 사용하면 복잡하기 때문에 Shared Preferences 를 사용하면 적합하다.
     // 로그아웃 할 때 Shared Preferences 데이터를 가져와 세션을 같으 삭제하면 완벽한 로그아웃이 완성?!
 
-    val logLogin: String = "사설 로그인 - 로그인 "
     lateinit var email: EditText
     lateinit var password: EditText
     lateinit var loginBtn: Button
@@ -30,8 +29,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-//        loadData()
 
         email = findViewById(R.id.login_email)
         password = findViewById(R.id.login_password)
@@ -69,26 +66,4 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-//
-//    private fun loadData() {
-//        Log.d(logLogin, "---- 출력 loadData ----")
-//        val pref = getSharedPreferences("pref", 0)
-//        login_email.setText(pref.getString("email", "")) // email 값이 존재하지 않을 경우 대체 데이터
-//        login_password.setText(pref.getString("password", ""))
-//    }
-//    private fun saveData() {
-//        Log.d(logLogin, "---- 출력 saveData ----")
-//        val pref = getSharedPreferences("pref", 0)
-//        val edit = pref.edit()
-//        edit.putString("email", "")
-//        edit.putString("password", "")
-//        edit.apply()
-//        edit.clear()
-//        edit.commit()
-//    }
-//    override fun onDestroy() {
-//        super.onDestroy()
-//
-//        saveData()
-//    }
 }
