@@ -18,6 +18,6 @@ class HomeActivity : AppCompatActivity() { // 회원가입 페이지 Ex) 구글,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        // TODO: 홈 화면 제작
+        // TODO: 홈 화면 제작!
     }
 }
