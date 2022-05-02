@@ -21,6 +21,9 @@
 1. https://developer.android.com/guide/topics/ui/menus.html#PopupMenu</br>
 2. https://ddolcat.tistory.com/578
 
+<h2>range Swipe</h2>
+1. ViewPager(SwipeView) 요거다
+
 <h3>onStart 에 대해 알아보기</h3>
 
 <h2>menu item - 구현이 애매하긴 하지만 나중에 사용할 것 같아 메모</h2>
