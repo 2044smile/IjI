@@ -22,9 +22,7 @@
 2. https://ddolcat.tistory.com/578
 
 <h2>range Swipe</h2>
-1. Theard - https://blog.naver.com/cjy2103/222646132005</br>
-2. RecycleView, Swipe - https://www.youtube.com/watch?v=IaIuKbEyGnY</br>
-  2.1 영상에서는 Swipe해서 내용을 삭제시키는데 이걸 살짝 수정만 하면 옆으로 넘어가기가 될 수도?
+1. ViewPager(SwipeView) 요거다
 
 <h3>onStart 에 대해 알아보기</h3>
 
