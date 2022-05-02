@@ -54,4 +54,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation "androidx.viewpager2:viewpager2:1.1.0-alpha01"
+
+    // 원 표시기, 한마디로 viewpager 에 출력되는 개수를 원으로 표시한다.
+    implementation "me.relex:circleindicator:2.1.6"
 }
