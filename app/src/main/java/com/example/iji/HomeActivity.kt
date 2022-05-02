@@ -14,10 +14,13 @@ import java.io.OutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-class HomeActivity : AppCompatActivity() { // 회원가입 페이지 Ex) 구글, 네이버, 카카오, 회원가입
+class HomeActivity : AppCompatActivity() { // 메인(홈) 페이지
+    // 1. ViewPager2 확정
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        // TODO: 홈 화면 제작!
+
+
+
     }
 }
