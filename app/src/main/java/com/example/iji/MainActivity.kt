@@ -15,7 +15,7 @@ import androidx.core.view.isVisible
 import com.example.iji.api.MyApplication
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() { // MainActivity 가 분명 코드상으로는 Main 이기에 이걸 변경해야 함
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
