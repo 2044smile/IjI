@@ -40,3 +40,4 @@ travel
 Vietnam
 19 come back korea
 하루가 남았다.
+5월 내에 수술만 안잡혔으면 좋겠다.
